@@ -235,7 +235,7 @@ Blockly.Wexflow.scrub_ = function(block, code) {
     comment = Blockly.utils.wrap(comment, Blockly.Wexflow.COMMENT_WRAP - 3);
     if (comment) {
       // // commentCode += Blockly.Wexflow.prefixLines(comment, '// ') + '\n';
-      commentCode += comment + '\n';
+      commentCode += comment;
     }
     // Collect comments for all value arguments.
     // Don't collect comments for nested statements.
@@ -256,7 +256,7 @@ Blockly.Wexflow.scrub_ = function(block, code) {
   var nextCode = Blockly.Wexflow.blockToCode(nextBlock);
 
   if (commentCode) {
-    commentCode = '<!-- commentCode -->\n';
+    commentCode = '<!-- ' + commentCode + ' -->\n';
   }
 
   return commentCode + code + nextCode;
