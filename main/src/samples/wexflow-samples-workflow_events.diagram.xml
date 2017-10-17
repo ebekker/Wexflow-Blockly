@@ -1,0 +1,145 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables></variables>
+  <block type="wexflow_workflow" id="[XCQ7~DWW`reQ3dn_ot0" x="-630" y="-30">
+    <statement name="SETTINGS">
+      <block type="wexflow_workflow_setting" id="@BMn[zXP*qxk#e@?e[aZ">
+        <field name="NAME">launchType</field>
+        <field name="VALUE">trigger</field>
+        <next>
+          <block type="wexflow_workflow_setting" id="Lee~KSwIhq.,ggZC%%aP">
+            <field name="NAME">enabled</field>
+            <field name="VALUE">true</field>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="GRAPH">
+      <block type="wexflow_task" id="~ok5TIOh[12Wu/D5jCF2">
+        <field name="NAME">FilesLoader</field>
+        <field name="ENABLED">TRUE</field>
+        <field name="DESCRIPTION">Loading files</field>
+        <statement name="SETTINGS">
+          <block type="wexflow_task_setting" id=")H`@]e4SeY,.rWCLe(),">
+            <field name="NAME">file</field>
+            <field name="VALUE">C:\WexflowTesting\file1.txt</field>
+          </block>
+        </statement>
+        <next>
+          <block type="wexflow_task" id=":baO+[kPbKnJfEX}3v8:">
+            <field name="NAME">Ftp</field>
+            <field name="ENABLED">TRUE</field>
+            <field name="DESCRIPTION">Uploading files</field>
+            <statement name="SETTINGS">
+              <block type="wexflow_task_setting" id="%%aR?jGH|*,K4;f.Fu29">
+                <field name="NAME">protocol</field>
+                <field name="VALUE">ftp</field>
+                <next>
+                  <block type="wexflow_task_setting" id="TpMxCg(,cw16K:fLG5=M">
+                    <field name="NAME">command</field>
+                    <field name="VALUE">upload</field>
+                    <next>
+                      <block type="wexflow_task_setting" id="[yerbe!sSf:T2?fyP:,)">
+                        <field name="NAME">server</field>
+                        <field name="VALUE">127.0.0.1</field>
+                        <next>
+                          <block type="wexflow_task_setting" id="5@cfk4%KhFrH*[M;2dLy">
+                            <field name="NAME">port</field>
+                            <field name="VALUE">21</field>
+                            <next>
+                              <block type="wexflow_task_setting" id="//^fS.-Tf6M8k#n|=FDz">
+                                <field name="NAME">user</field>
+                                <field name="VALUE">user</field>
+                                <next>
+                                  <block type="wexflow_task_setting" id="@Z.GEB1A4?1D[t!FzywL">
+                                    <field name="NAME">password</field>
+                                    <field name="VALUE">password</field>
+                                    <next>
+                                      <block type="wexflow_task_setting" id="Jus+tuS)#Z);AMEVIHJn">
+                                        <field name="NAME">path</field>
+                                        <field name="VALUE">/</field>
+                                        <next>
+                                          <block type="wexflow_task_setting" id="l.2P:yBzXWnT}-o$59ID">
+                                            <field name="NAME">selectFiles</field>
+                                            <field name="VALUE">1</field>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="EVENTS">
+      <block type="wexflow_events" id="lm+?eG5YGD_:{Occ_x5n">
+        <statement name="ONSUCCESS">
+          <block type="wexflow_task" id="S2XoQh`r0cz$0!wSv#7X">
+            <field name="NAME">FilesLoader</field>
+            <field name="ENABLED">TRUE</field>
+            <field name="DESCRIPTION">Loading emails</field>
+            <statement name="SETTINGS">
+              <block type="wexflow_task_setting" id="jLB0rV:MfP?XlEdSTnZq">
+                <field name="NAME">file</field>
+                <field name="VALUE">C:\WexflowTesting\Emails\Emails.xml</field>
+              </block>
+            </statement>
+            <next>
+              <block type="wexflow_task" id="py:X1S8|1Q.m1.4qgwc-">
+                <field name="NAME">MailsSender</field>
+                <field name="ENABLED">TRUE</field>
+                <field name="DESCRIPTION">Notifying customers</field>
+                <statement name="SETTINGS">
+                  <block type="wexflow_task_setting" id="[H:y@tVs]4uf*lV$mRq~">
+                    <field name="NAME">selectFiles</field>
+                    <field name="VALUE">3</field>
+                    <next>
+                      <block type="wexflow_task_setting" id=".M8?0iN44z^-:1~e%8A!">
+                        <field name="NAME">host</field>
+                        <field name="VALUE">127.0.0.1</field>
+                        <next>
+                          <block type="wexflow_task_setting" id="6;T~Sm!fN23,L0=a/wdr">
+                            <field name="NAME">port</field>
+                            <field name="VALUE">587</field>
+                            <next>
+                              <block type="wexflow_task_setting" id="]!`|mn1cUJU*Fcx~lW%#">
+                                <field name="NAME">enableSsl</field>
+                                <field name="VALUE">true</field>
+                                <next>
+                                  <block type="wexflow_task_setting" id="cM^^)PR6.-4_j(q/n,J@">
+                                    <field name="NAME">user</field>
+                                    <field name="VALUE">user</field>
+                                    <next>
+                                      <block type="wexflow_task_setting" id="_yYAo|tD)f+=l6.@nDhY">
+                                        <field name="NAME">password</field>
+                                        <field name="VALUE">password</field>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </value>
+  </block>
+</xml>

@@ -1,0 +1,56 @@
+<?xml version='1.0'?>
+<Workflow xmlns="urn:wexflow-schema" id="1" name="TBD" description="TBD">
+
+<Settings>
+  <Setting name="launchType" value="periodic" />
+  <Setting name="period" value="24.00:00:00" />
+  <Setting name="enabled" value="true" />
+</Settings>
+<Tasks>
+  <Task id="1" name="Now" description="Getting current day" enabled="true">
+    <Setting name="culture" value="en-US" />
+    <Setting name="format" value="dddd" />
+  </Task>
+  <Task id="2" name="FilesLoader" description="Loading files" enabled="true">
+    <Setting name="file" value="C:\WexflowTesting\file1.txt" />
+  </Task>
+  <Task id="3" name="Ftp" description="Uploading files" enabled="true">
+    <Setting name="protocol" value="ftp" />
+    <Setting name="command" value="upload" />
+    <Setting name="server" value="127.0.0.1" />
+    <Setting name="port" value="21" />
+    <Setting name="user" value="user" />
+    <Setting name="password" value="password" />
+    <Setting name="path" value="/" />
+    <Setting name="selectFiles" value="1" />
+  </Task>
+  <Task id="4" name="FilesLoader" description="Loading emails" enabled="true">
+    <Setting name="file" value="C:\WexflowTesting\Emails\Emails.xml" />
+  </Task>
+  <Task id="5" name="MailsSender" description="Notifying customers" enabled="true">
+    <Setting name="selectFiles" value="3" />
+    <Setting name="host" value="127.0.0.1" />
+    <Setting name="port" value="587" />
+    <Setting name="enableSsl" value="true" />
+    <Setting name="user" value="user" />
+    <Setting name="password" value="password" />
+  </Task>
+  <Task id="6" name="Wait" description="Waiting for 2 days..." enabled="true">
+    <Setting name="duration" value="02.00:00:00" />
+  </Task>
+</Tasks>
+<ExecutionGraph>
+  <Switch id="7" parent="-1" switch="1">
+    <Case value="Monday">
+      <Task id="2"><Parent id="-1" /></Task>
+      <Task id="3"><Parent id="2" /></Task>
+    </Case>
+    <Case value="Wednesday">
+      <Task id="4"><Parent id="-1" /></Task>
+      <Task id="5"><Parent id="4" /></Task>
+      <Task id="6"><Parent id="5" /></Task>
+    </Case>
+  </Switch>
+</ExecutionGraph>
+
+</Workflow>

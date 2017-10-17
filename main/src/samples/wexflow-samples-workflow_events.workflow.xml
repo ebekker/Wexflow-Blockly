@@ -1,0 +1,43 @@
+<?xml version='1.0'?>
+<Workflow xmlns="urn:wexflow-schema" id="1" name="TBD" description="TBD">
+
+<Settings>
+  <Setting name="launchType" value="trigger" />
+  <Setting name="enabled" value="true" />
+</Settings>
+<Tasks>
+  <Task id="1" name="FilesLoader" description="Loading files" enabled="true">
+    <Setting name="file" value="C:\WexflowTesting\file1.txt" />
+  </Task>
+  <Task id="2" name="Ftp" description="Uploading files" enabled="true">
+    <Setting name="protocol" value="ftp" />
+    <Setting name="command" value="upload" />
+    <Setting name="server" value="127.0.0.1" />
+    <Setting name="port" value="21" />
+    <Setting name="user" value="user" />
+    <Setting name="password" value="password" />
+    <Setting name="path" value="/" />
+    <Setting name="selectFiles" value="1" />
+  </Task>
+  <Task id="3" name="FilesLoader" description="Loading emails" enabled="true">
+    <Setting name="file" value="C:\WexflowTesting\Emails\Emails.xml" />
+  </Task>
+  <Task id="4" name="MailsSender" description="Notifying customers" enabled="true">
+    <Setting name="selectFiles" value="3" />
+    <Setting name="host" value="127.0.0.1" />
+    <Setting name="port" value="587" />
+    <Setting name="enableSsl" value="true" />
+    <Setting name="user" value="user" />
+    <Setting name="password" value="password" />
+  </Task>
+</Tasks>
+<ExecutionGraph>
+  <Task id="1"><Parent id="-1" /></Task>
+  <Task id="2"><Parent id="1" /></Task>
+  <OnSuccess>
+    <Task id="3"><Parent id="-1" /></Task>
+    <Task id="4"><Parent id="3" /></Task>
+  </OnSuccess>
+  </ExecutionGraph>
+
+</Workflow>

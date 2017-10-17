@@ -1,0 +1,63 @@
+<?xml version='1.0'?>
+<Workflow xmlns="urn:wexflow-schema" id="1" name="TBD" description="TBD">
+
+<Settings>
+  <Setting name="launchType" value="trigger" />
+  <Setting name="enabled" value="true" />
+</Settings>
+<Tasks>
+  <Task id="1" name="FileExists" description="Checking trigger file" enabled="true">
+    <Setting name="file" value="C:\WexflowTesting\file.trigger" />
+  </Task>
+  <Task id="2" name="FilesLoader" description="Loading files" enabled="true">
+    <Setting name="file" value="C:\WexflowTesting\file1.txt" />
+  </Task>
+  <Task id="3" name="Ftp" description="Uploading files" enabled="true">
+    <Setting name="protocol" value="ftp" />
+    <Setting name="command" value="upload" />
+    <Setting name="server" value="127.0.0.1" />
+    <Setting name="port" value="21" />
+    <Setting name="user" value="user" />
+    <Setting name="password" value="password" />
+    <Setting name="path" value="/" />
+    <Setting name="selectFiles" value="1" />
+  </Task>
+  <Task id="4" name="FilesLoader" description="Loading emails (OK)" enabled="true">
+    <Setting name="file" value="C:\WexflowTesting\Emails\Emails.xml" />
+  </Task>
+  <Task id="5" name="MailsSender" description="Notifying customers (OK)" enabled="true">
+    <Setting name="selectFiles" value="3" />
+    <Setting name="host" value="127.0.0.1" />
+    <Setting name="port" value="587" />
+    <Setting name="enableSsl" value="true" />
+    <Setting name="user" value="user" />
+    <Setting name="password" value="password" />
+  </Task>
+  <Task id="6" name="FilesLoader" description="Loading emails (KO)" enabled="true">
+    <Setting name="file" value="C:\WexflowTesting\Emails\Emails.xml" />
+  </Task>
+  <Task id="7" name="MailsSender" description="Notifying customers (KO)" enabled="true">
+    <Setting name="selectFiles" value="5" />
+    <Setting name="host" value="127.0.0.1" />
+    <Setting name="port" value="587" />
+    <Setting name="enableSsl" value="true" />
+    <Setting name="user" value="user" />
+    <Setting name="password" value="password" />
+  </Task>
+</Tasks>
+<ExecutionGraph>
+  <If id="8" parent="-1" if="1">
+  <Do>
+    <Task id="2"><Parent id="-1" /></Task>
+    <Task id="3"><Parent id="2" /></Task>
+    <Task id="4"><Parent id="3" /></Task>
+    <Task id="5"><Parent id="4" /></Task>
+  </Do>
+  <Else>
+    <Task id="6"><Parent id="-1" /></Task>
+    <Task id="7"><Parent id="6" /></Task>
+  </Else>
+  </If>
+</ExecutionGraph>
+
+</Workflow>
