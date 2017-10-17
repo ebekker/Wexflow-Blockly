@@ -39,6 +39,7 @@
 
         #blocklyArea {
             height: 99%;
+            width: 99%;
             background: #fc9;
             text-align: center;
         }
@@ -47,7 +48,8 @@
     <script src="generators/wexflow.js"></script>
     <script src="blocks_compressed.js"></script>
     <script src="msg/js/en.js"></script>
-    <script src="wexflow_blocks.js"></script>    
+    <script src="wexflow_blocks.js"></script>
+    <script src="storage.js"></script>
 </head>
 
 <body>
@@ -63,6 +65,7 @@
                         <field name="VALUE">default</field>
                       </block>
                       <block type="wexflow_events"></block>
+                      <label text="Generic Task"></label>
                       <block type="wexflow_task">
                         <field name="NAME">name</field>
                         <field name="ENABLED">TRUE</field>
@@ -73,12 +76,8 @@
                         <field name="VALUE">default</field>
                       </block>
                     </category>
+                    <sep></sep>
                     <category name="Flowchart">
-                      <block type="wexflow_task_single">
-                        <field name="NAME">name</field>
-                        <field name="ENABLED">TRUE</field>
-                        <field name="DESCRIPTION"></field>
-                      </block>
                       <block type="wexflow_graph_if">
                         <value name="IF">
                           <block type="wexflow_task_single">
@@ -114,8 +113,15 @@
                       <block type="wexflow_graph_switch_case">
                         <field name="VALUE">value</field>
                       </block>
+                      <label text="Single Generic Task"></label>
+                      <block type="wexflow_task_single">
+                        <field name="NAME">name</field>
+                        <field name="ENABLED">TRUE</field>
+                        <field name="DESCRIPTION"></field>
+                      </block>
                     </category>
-                  </xml>
+                    <sep></sep>
+                </xml>
                   <!-- <xml id="toolbox" style="display: none">
                     <category name="Logic" expanded="true">
                         <block type="controls_if"></block>
@@ -134,16 +140,23 @@
         </tr>
         <tr>
             <td>mid-left</td>
-            <td id="blocklyArea">Blockly will be positioned here.</td>
-            <td>mid-right</td>
+            <td id="blocklyArea"><!--Blockly will be positioned here--></td>
+            <td>
+                <div><button onclick="saveCode()">Save Diagram</button></div>
+                <div><button onclick="loadCode()">Load Diagram</button></div>
+                <div>&nbsp;</div>
+                <div><button onclick="exportCode()">Export Workflow</button></div>
+                <input type="file" id="load_file" accept=".diagram.xml" onchange="handleFiles(this.files)" style="display:none;"></input>
+            </td>
         </tr>
         <tr>
             <td>bottom-left</td>
             <td>bottom-center</td>
-            <td><button onclick="generateCode()">Generate</button></td>
+            <td>
+                <div><button onclick="generateCode()">Generate</button></div>
+            </td>
         </tr>
     </table>
-    
 
     <script>
         var mainWorkspace = Blockly.inject('blocklyArea', {
@@ -188,7 +201,21 @@
             // trashcan:	boolean	Displays or hides the trashcan. Defaults to true if the toolbox has categories, false otherwise.
             // zoom:	object	Configures zooming behaviour. See Zoom...
         });
+        // Makes sure orphans can't *float* on the page
         mainWorkspace.addChangeListener(Blockly.Events.disableOrphans);
+
+        if ('BlocklyStorage' in window) {
+            BlocklyStorage.HTTPREQUEST_ERROR = 'There was a problem with the request.\n';
+            BlocklyStorage.LINK_ALERT = 'Share your blocks with this link:\n\n%1';
+            BlocklyStorage.HASH_ERROR = 'Sorry, "%1" doesn\'t correspond with any saved Blockly file.';
+            BlocklyStorage.XML_ERROR = 'Could not load your saved file.\n' +
+                'Perhaps it was created with a different version of Blockly?';
+
+                // Reload the last blockly workspace
+            window.setTimeout(BlocklyStorage.restoreBlocks, 0);
+            // Save the workspace upon leaving
+            BlocklyStorage.backupOnUnload();
+        }
 
         //var rootBlock = '<xml><block type="wexflow_workflow" deletable="false" movable="false"></block></xml>';
         //Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(rootBlock), workspace);
@@ -198,7 +225,55 @@
             var code = Blockly.Wexflow.workspaceToCode(mainWorkspace);
             console.log("Generated: " + code);
         }
+        function saveCode() {
+            var xml = Blockly.Xml.workspaceToDom(mainWorkspace);
+            // Ugly:
+            //var xml_text = Blockly.Xml.domToText(xml);
+            // Pretty:
+            var xml_text = Blockly.Xml.domToPrettyText(xml);
+            download('wexflow.diagram.xml', xml_text);
+        }
+        function loadCode() {
+            document.getElementById('load_file').click();
+        }
+        function exportCode() {
+            var code = Blockly.Wexflow.workspaceToCode(mainWorkspace);
+            download('wexflow.workflow.xml', code);
+        }
+
+        // From:  https://stackoverflow.com/a/18197341/5428506
+        function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+        // From:  https://www.html5rocks.com/en/tutorials/file/dndfiles/
+        //  and:  https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications
+        function handleFiles(files) {
+            for (var i = 0, f; f = files[i]; i++) {
+                var reader = new FileReader();
+
+                reader.onload = (function(theFile) {
+                    return function(e) {
+                        var xml = Blockly.Xml.textToDom(e.target.result);
+                        Blockly.Xml.domToWorkspace(xml, mainWorkspace);
+                    };
+                })(f);
+
+                reader.readAsText(f);
+                break;
+            }
+        }
     </script>
+
 </body>
 
 </html>
