@@ -5,6 +5,7 @@
       <field name="NAME">name</field>
       <field name="VALUE">default</field>
     </block>
+    <block type="wexflow_events"></block>
     <block type="wexflow_task">
       <field name="NAME">name</field>
       <field name="ENABLED">TRUE</field>
@@ -14,7 +15,6 @@
       <field name="NAME">name</field>
       <field name="VALUE">default</field>
     </block>
-    <block type="wexflow_events"></block>
   </category>
   <category name="Flowchart">
     <block type="wexflow_task_single">

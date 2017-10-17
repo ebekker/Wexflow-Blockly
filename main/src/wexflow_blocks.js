@@ -14,7 +14,7 @@ Blockly.Blocks['wexflow_workflow'] = {
           .setCheck("type-wexflow_events")
           .setAlign(Blockly.ALIGN_RIGHT)
           .appendField("events");
-      this.setColour(230);
+      this.setColour(180);
    this.setTooltip("");
    this.setHelpUrl("");
     }
@@ -30,7 +30,7 @@ Blockly.Blocks['wexflow_workflow'] = {
       this.setInputsInline(true);
       this.setPreviousStatement(true, "type-wexflow_workflow_setting");
       this.setNextStatement(true, "type-wexflow_workflow_setting");
-      this.setColour(15);
+      this.setColour(180);
    this.setTooltip("Configures a named setting for the associated Workflow");
    this.setHelpUrl("https://github.com/aelassas/Wexflow/wiki/Samples");
     }
@@ -76,15 +76,15 @@ Blockly.Blocks['wexflow_workflow'] = {
     init: function() {
       this.appendStatementInput("ONSUCCESS")
           .setCheck("type-wexflow_graph_node")
-          .appendField("OnSuccess");
+          .appendField("on Success");
       this.appendStatementInput("ONWARNING")
           .setCheck("type-wexflow_graph_node")
-          .appendField("OnWarning");
+          .appendField("on Warning");
       this.appendStatementInput("ONERROR")
           .setCheck("type-wexflow_graph_node")
-          .appendField("OnError");
+          .appendField("on Error");
       this.setOutput(true, "type-wexflow_events");
-      this.setColour(230);
+      this.setColour(180);
    this.setTooltip("");
    this.setHelpUrl("");
     }
@@ -103,7 +103,7 @@ Blockly.Blocks['wexflow_workflow'] = {
           .setCheck("type-wexflow_task_setting")
           .appendField("Settings");
       this.setOutput(true, "type-wexflow_task_single");
-      this.setColour(270);
+      this.setColour(285);
    this.setTooltip("");
    this.setHelpUrl("");
     }
@@ -115,15 +115,17 @@ Blockly.Blocks['wexflow_workflow'] = {
           .setCheck("type-wexflow_task_single")
           .setAlign(Blockly.ALIGN_RIGHT)
           .appendField("IF");
+      this.appendDummyInput();
       this.appendStatementInput("DO")
           .setCheck("type-wexflow_graph_node")
           .appendField("then");
       this.appendStatementInput("ELSE")
           .setCheck("type-wexflow_graph_node")
           .appendField("else");
+      this.setInputsInline(false);
       this.setPreviousStatement(true, "type-wexflow_graph_node");
       this.setNextStatement(true, "type-wexflow_graph_node");
-      this.setColour(230);
+      this.setColour(45);
    this.setTooltip("");
    this.setHelpUrl("");
     }
@@ -135,12 +137,14 @@ Blockly.Blocks['wexflow_workflow'] = {
           .setCheck("type-wexflow_task_single")
           .setAlign(Blockly.ALIGN_RIGHT)
           .appendField("WHILE");
+      this.appendDummyInput();
       this.appendStatementInput("DO")
           .setCheck("type-wexflow_graph_node")
           .appendField("do");
+      this.setInputsInline(false);
       this.setPreviousStatement(true, "type-wexflow_graph_node");
       this.setNextStatement(true, "type-wexflow_graph_node");
-      this.setColour(230);
+      this.setColour(60);
    this.setTooltip("");
    this.setHelpUrl("");
     }
@@ -152,15 +156,17 @@ Blockly.Blocks['wexflow_workflow'] = {
           .setCheck("type-wexflow_task_single")
           .setAlign(Blockly.ALIGN_RIGHT)
           .appendField("SWITCH");
+      this.appendDummyInput();
       this.appendStatementInput("CASES")
           .setCheck("type-wexflow_graph_switch_case")
           .appendField("cases:");
       this.appendStatementInput("DEFAULT")
           .setCheck("type-wexflow_graph_node")
           .appendField("default:");
+      this.setInputsInline(false);
       this.setPreviousStatement(true, "type-wexflow_graph_node");
       this.setNextStatement(true, "type-wexflow_graph_node");
-      this.setColour(230);
+      this.setColour(75);
    this.setTooltip("");
    this.setHelpUrl("");
     }
@@ -175,7 +181,7 @@ Blockly.Blocks['wexflow_workflow'] = {
           .setCheck("type-wexflow_graph_node");
       this.setPreviousStatement(true, "type-wexflow_graph_switch_case");
       this.setNextStatement(true, "type-wexflow_graph_switch_case");
-      this.setColour(230);
+      this.setColour(90);
    this.setTooltip("");
    this.setHelpUrl("");
     }
