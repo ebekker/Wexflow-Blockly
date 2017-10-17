@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Blockly Demo: Resizable Blockly (Part 1)</title>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-102948379-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background-color: #fff;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-weight: normal;
+            font-size: 140%;
+        }
+
+        table {
+            height: 100%;
+            width: 100%;
+        }
+
+        #blocklyArea {
+            height: 99%;
+            background: #fc9;
+            text-align: center;
+        }
+    </style>
+    <script src="blockly_compressed.js"></script>
+    <script src="generators/wexflow.js"></script>
+    <script src="blocks_compressed.js"></script>
+    <script src="msg/js/en.js"></script>
+    <script src="wexflow_blocks.js"></script>    
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>top-left</td>
+            <td>
+                <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+                    <category name="Workflow">
+                      <block type="wexflow_workflow_settings">
+                        <statement name="NAME">
+                          <block type="wexflow_workflow_setting">
+                            <field name="NAME">name</field>
+                            <field name="VALUE">default</field>
+                          </block>
+                        </statement>
+                      </block>
+                      <block type="wexflow_workflow_setting">
+                        <field name="NAME">name</field>
+                        <field name="VALUE">default</field>
+                      </block>
+                    </category>
+                    <category name="Tasks">
+                      <block type="wexflow_task">
+                        <field name="NAME">name</field>
+                        <field name="ENABLED">TRUE</field>
+                        <field name="DESCRIPTION"></field>
+                      </block>
+                      <block type="wexflow_task_setting">
+                        <field name="NAME">name</field>
+                        <field name="VALUE">default</field>
+                      </block>
+                    </category>
+                  </xml>
+                  <!-- <xml id="toolbox" style="display: none">
+                    <category name="Logic" expanded="true">
+                        <block type="controls_if"></block>
+                        <block type="controls_repeat_ext"></block>
+                        <block type="logic_compare"></block>
+                    </category>
+                    <category name="Misc" expanded="true">
+                        <block type="math_number"></block>
+                        <block type="math_arithmetic"></block>
+                        <block type="text"></block>
+                        <block type="text_print"></block>
+                    </category>
+                </xml> -->
+            </td>
+            <td>top-right</td>
+        </tr>
+        <tr>
+            <td>mid-left</td>
+            <td id="blocklyArea">Blockly will be positioned here.</td>
+            <td>mid-right</td>
+        </tr>
+        <tr>
+            <td>bottom-left</td>
+            <td>bottom-center</td>
+            <td><button onclick="generateCode()">Generate</button></td>
+        </tr>
+    </table>
+    
+
+    <script>
+        var mainWorkspace = Blockly.inject('blocklyArea', {
+            toolbox: document.getElementById('toolbox'),
+            trashcan: true,
+            grid: {
+                spacing: 20,
+                length: 3,
+                colour: '#ccc',
+                snap: true
+            },
+            collapse: true,
+            comments: true,
+            disable: true,
+            scrollbars: true,
+            zoom: {
+                controls: true,
+                wheel: true,
+                startScale: 1.0,
+                maxScale: 3,
+                minScale: 0.3,
+                scaleSpeed: 1.2
+            },
+            oneBasedIndex: false,
+            readOnly: false
+
+            // collapse:	boolean	Allows blocks to be collapsed or expanded. Defaults to true if the toolbox has categories, false otherwise.
+            // comments:	boolean	Allows blocks to have comments. Defaults to true if the toolbox has categories, false otherwise.
+            // css:	boolean	If false, don't inject CSS (providing CSS becomes the document's responsibility). Defaults to true.
+            // disable:	boolean	Allows blocks to be disabled. Defaults to true if the toolbox has categories, false otherwise.
+            // grid:	object	Configures a grid which blocks may snap to. See Grid...
+            // horizontalLayout:	boolean	If true toolbox is horizontal, if false toolbox is vertical. Defaults to false.
+            // maxBlocks:	number	Maximum number of blocks that may be created. Useful for student exercises. Defaults to Infinity.
+            // media:	string	Path from page (or frame) to the Blockly media directory. Defaults to "https://blockly-demo.appspot.com/static/media/".
+            // oneBasedIndex:	boolean	If true list and string operations should index from 1, if false index from 0. Defaults to true.
+            // readOnly:	boolean	If true, prevent the user from editing. Supresses the toolbox and trashcan. Defaults to false.
+            // rtl:	boolean	If true, mirror the editor (for Arabic or Hebrew locales). See RTL demo. Defaults to false.
+            // scrollbars:	boolean	Sets whether the workspace is scrollable or not. Defaults to true if the toolbox has categories, false otherwise.
+            // sounds:	boolean	If false, don't play sounds (e.g. click and delete). Defaults to true.
+            // toolbox:	XML nodes or string	Tree structure of categories and blocks available to the user. See below for more information.
+            // toolboxPosition:	string	If "start" toolbox is on top (if horizontal) or left (if vertical and LTR) or right (if vertical and RTL). If "end" toolbox is on opposite side. Defaults to "start".
+            // trashcan:	boolean	Displays or hides the trashcan. Defaults to true if the toolbox has categories, false otherwise.
+            // zoom:	object	Configures zooming behaviour. See Zoom...
+        });
+        mainWorkspace.addChangeListener(Blockly.Events.disableOrphans);
+
+        //var rootBlock = '<xml><block type="wexflow_workflow" deletable="false" movable="false"></block></xml>';
+        //Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(rootBlock), workspace);
+
+        function generateCode() {
+            console.log("Generating...");
+            var code = Blockly.Wexflow.workspaceToCode(mainWorkspace);
+            console.log("Generated: " + code);
+        }
+    </script>
+</body>
+
+</html>

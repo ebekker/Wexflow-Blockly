@@ -1,0 +1,792 @@
+<xml xmlns="http://www.w3.org/1999/xhtml"><block type="factory_base" id="I,CxFL1riTPz8VKq43fy" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">wexflow_workflow_setting</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="j($/(^v4@@:vHVWy{RPu">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",;2-RS4|s0aO@sGbjrGn">
+            <field name="TEXT">Workflow Setting:</field>
+            <next>
+              <block type="field_input" id="L-+3O8?RM4AQ{=}Y+NU5">
+                <field name="TEXT">name</field>
+                <field name="FIELDNAME">NAME</field>
+                <next>
+                  <block type="field_static" id="Y{DWaw,No4qCk~uE$,@-">
+                    <field name="TEXT">Value:</field>
+                    <next>
+                      <block type="field_input" id="72j]dQX)8%aD}:SIH$ro">
+                        <field name="TEXT">default</field>
+                        <field name="FIELDNAME">VALUE</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id=")-hiM2[gQd1D3uWB(;X`" deletable="false" movable="false">
+        <field name="TEXT">Configures a named setting for the associated Workflow</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="yKyJfM*w.d}]F,TQ!~I)" deletable="false" movable="false">
+        <field name="TEXT">https://github.com/aelassas/Wexflow/wiki/Samples</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="WRv{{y`x9{xn-CJ3BIbq"></shadow>
+      <block type="type_other" id="6xgF9Nl=^?O?z4rZhL!V">
+        <field name="TYPE">type-wexflow_workflow_setting</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="ep{WCW$5Ygv;LLB@wC|C"></shadow>
+      <block type="type_other" id="maJdc2o!6(1[=)H6tSzM">
+        <field name="TYPE">type-wexflow_workflow_setting</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="SoH]@?GoZfcO+OB=qnM4">
+        <mutation colour="#a56d5b"></mutation>
+        <field name="HUE">15</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="I,CxFL1riTPz8VKq43fy" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">wexflow_task_setting</field>
+    <field name="INLINE">INT</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="j($/(^v4@@:vHVWy{RPu">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id=",;2-RS4|s0aO@sGbjrGn">
+            <field name="TEXT">Task Setting:</field>
+            <next>
+              <block type="field_input" id="L-+3O8?RM4AQ{=}Y+NU5">
+                <field name="TEXT">name</field>
+                <field name="FIELDNAME">NAME</field>
+                <next>
+                  <block type="field_static" id="Y{DWaw,No4qCk~uE$,@-">
+                    <field name="TEXT">Value:</field>
+                    <next>
+                      <block type="field_input" id="72j]dQX)8%aD}:SIH$ro">
+                        <field name="TEXT">default</field>
+                        <field name="FIELDNAME">VALUE</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id=")-hiM2[gQd1D3uWB(;X`" deletable="false" movable="false">
+        <field name="TEXT">Configures a named setting for the associated Workflow</field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="yKyJfM*w.d}]F,TQ!~I)" deletable="false" movable="false">
+        <field name="TEXT">https://github.com/aelassas/Wexflow/wiki/Samples</field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="WRv{{y`x9{xn-CJ3BIbq"></shadow>
+      <block type="type_other" id="t?xa.n@77lV1,mV$Xvtn">
+        <field name="TYPE">type-wexflow_task_setting</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="ep{WCW$5Ygv;LLB@wC|C"></shadow>
+      <block type="type_other" id="6xgF9Nl=^?O?z4rZhL!V">
+        <field name="TYPE">type-wexflow_task_setting</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="SoH]@?GoZfcO+OB=qnM4">
+        <mutation colour="#805ba5"></mutation>
+        <field name="HUE">270</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="dX_g+7III`YC{`M[%]AX" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">wexflow_task</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="r5*l}s%`}L)N0vfgTz1z">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="p!3[u]`4qK%#$s:dQF9o">
+            <field name="TEXT">Task</field>
+            <next>
+              <block type="field_input" id="@7tCMJHrZWjgv~bCPHRS">
+                <field name="TEXT">name</field>
+                <field name="FIELDNAME">NAME</field>
+                <next>
+                  <block type="field_static" id="Sh%By6_35(T;W}JYs_!3">
+                    <field name="TEXT">Enabled:</field>
+                    <next>
+                      <block type="field_checkbox" id="`=~j#(-gy?h086g$)6S8">
+                        <field name="CHECKED">TRUE</field>
+                        <field name="FIELDNAME">ENABLED</field>
+                        <next>
+                          <block type="field_static" id="OrDpv9z(=v+jmaemR2tt">
+                            <field name="TEXT">Desc:</field>
+                            <next>
+                              <block type="field_input" id="7VgL`75V}#.2`Ox7:rzp">
+                                <field name="TEXT"></field>
+                                <field name="FIELDNAME">DESCRIPTION</field>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="A_xQOQY(wndly#?Z_s3u">
+            <field name="INPUTNAME">SETTINGS</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="XJPXa:ZKecWoYGNc0M54">
+                <field name="TEXT">Settings</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="jgmNP3Vs*wh!^ovf!i8g"></shadow>
+              <block type="type_other" id="[*AM/wNn!VbN{ak$?]sS">
+                <field name="TYPE">type-wexflow_task_setting</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="[Ks`B;@Sg7n)iq%o0=xE" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(+#EN)x:3+PNO`7Z^PN1" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id=";O/p*E@X0_}gNuA/R^10"></shadow>
+      <block type="type_other" id="I$6A,KkE,x/d{zU%~=fj">
+        <field name="TYPE">type-wexflow_graph_node</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="_9HdwZV@ZR[{~Ay,t/eC"></shadow>
+      <block type="type_other" id="WB%Q{}~wj@MmN%{Vy#j}">
+        <field name="TYPE">type-wexflow_graph_node</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="1,lub.rkT~84uYfWLG53">
+        <mutation colour="#935ba5"></mutation>
+        <field name="HUE">285</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="ns.G[8D5yuP:BeDC{Lk~" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="NONE"></mutation>
+    <field name="NAME">wexflow_workflow</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">NONE</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="EsDA%_?.F(}/*6`tGO)M">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="Q.NZD|/Rhe8CYEeMm}HJ">
+            <field name="TEXT">WORKFLOW</field>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="B}{hb(*6!ei_!{qO(I[V">
+            <field name="INPUTNAME">SETTINGS</field>
+            <field name="ALIGN">RIGHT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="N_id+#*4`ga+)#zez4b)">
+                <field name="TEXT">settings</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="8_z$4#,*;9b#w6fJR|sp"></shadow>
+              <block type="type_other" id="4f=3rh*G$.h?u5DOChoH">
+                <field name="TYPE">type-wexflow_workflow_setting</field>
+              </block>
+            </value>
+            <next>
+              <block type="input_statement" id="?U{3KRokK6/V]u+OI~Qw">
+                <field name="INPUTNAME">GRAPH</field>
+                <field name="ALIGN">RIGHT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="gN~28Q8,GH;V7E|P!dmY">
+                    <field name="TEXT">tasks</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="faTakp0y!@G=dAkYuZwf"></shadow>
+                  <block type="type_other" id="sP(s{~,dE%0.?qqtG4t/">
+                    <field name="TYPE">type-wexflow_graph_node</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="input_value" id="LwojX@LW20pZcvF7hCMY">
+                    <field name="INPUTNAME">EVENTS</field>
+                    <field name="ALIGN">RIGHT</field>
+                    <statement name="FIELDS">
+                      <block type="field_static" id="+1kkQ6#HQnf4cH@Rk9*9">
+                        <field name="TEXT">events</field>
+                      </block>
+                    </statement>
+                    <value name="TYPE">
+                      <shadow type="type_null" id="Szg#{A5xxgH;,U@CoObE"></shadow>
+                      <block type="type_other" id="L(b5K6]|n#Wz(Je!,;Wg">
+                        <field name="TYPE">type-wexflow_events</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="U-D.nF{1ERtE_#3;_ub~" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="z7ue_]6VEkuMyinI.%.f" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="n3l5sWER,TMIhSqxRD7/">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="rR2ahR?ajqEetv[4C@x:" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">wexflow_execution_graph</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_statement" id="?l~l?{ie#cK~yz(A]M!r">
+        <field name="INPUTNAME">TASKS</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="g75*Hz*jm2osV%BYapW9">
+            <field name="TEXT">Tasks</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="+LdqV@)Df;~?FeFAlAS7"></shadow>
+          <block type="type_other" id="7zH0-82A::+YgXl$tLrn">
+            <field name="TYPE">type-wexflow_graph_node</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="az/,$J%*4jBmmx*as()T" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="en7X%n7sxJyu!TANk_AI" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="n0e$iEe)[adz[ncT80]J"></shadow>
+      <block type="type_other" id="tcL.=R6jgKJ$nFo{}qrc">
+        <field name="TYPE">type-wexflow_graph</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="}XA5.^c;0g#*ww/YyPhB">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="{l4BMS/v,zWR5Sgl}G~t" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">wexflow_graph_if</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="%d}_!-iHV=OhOU40et8c">
+        <field name="INPUTNAME">IF</field>
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="#(T2wKN^t_J+Y4WRg-fl">
+            <field name="TEXT">IF</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="?fsq%bnT!@dl=uCTW5GB"></shadow>
+          <block type="type_other" id="DiA/9CyokPM(p!;c_S$?">
+            <field name="TYPE">type-wexflow_task_single</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_statement" id="KDFC?R!7~u?0pc16%.MI">
+            <field name="INPUTNAME">DO</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="cBzLU2#J:3Y-hkp9UW4W">
+                <field name="TEXT">then</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="YPAx:t,T_Gqw|sz$5Dut"></shadow>
+              <block type="type_other" id="A_pr#u,IolCgS0`vg]IF">
+                <field name="TYPE">type-wexflow_graph_node</field>
+              </block>
+            </value>
+            <next>
+              <block type="input_statement" id=":M}?E6?!{kOPf2|Ta+0D">
+                <field name="INPUTNAME">ELSE</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="I(%_M)b5%SHI%h*2?z(|">
+                    <field name="TEXT">else</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="FQMA~2GLl$N-z!~yWTgg"></shadow>
+                  <block type="type_other" id="Lv+e^#yO@G/eQ|Xusp4K">
+                    <field name="TYPE">type-wexflow_graph_node</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="zy2tCC2MS3OcyEvBkRq{" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="d8cU`B=We,6yfb(.YaA{" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="6AJ$k[_98b)j#lFoIleK"></shadow>
+      <block type="type_other" id="~#*vaszOO65YJO|XMv;=">
+        <field name="TYPE">type-wexflow_graph_node</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="5!s*1HL6a8#d!rLZI@:i"></shadow>
+      <block type="type_other" id="Jc4PC%tUx2NF~V=R#08O">
+        <field name="TYPE">type-wexflow_graph_node</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="/frh+hJw6h;A8as.Bv1f">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="dX_g+7III`YC{`M[%]AX" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">wexflow_task_single</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_dummy" id="r5*l}s%`}L)N0vfgTz1z">
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="p!3[u]`4qK%#$s:dQF9o">
+            <field name="TEXT">Task</field>
+            <next>
+              <block type="field_input" id="@7tCMJHrZWjgv~bCPHRS">
+                <field name="TEXT">name</field>
+                <field name="FIELDNAME">NAME</field>
+                <next>
+                  <block type="field_static" id="Sh%By6_35(T;W}JYs_!3">
+                    <field name="TEXT">Enabled:</field>
+                    <next>
+                      <block type="field_checkbox" id="`=~j#(-gy?h086g$)6S8">
+                        <field name="CHECKED">TRUE</field>
+                        <field name="FIELDNAME">ENABLED</field>
+                        <next>
+                          <block type="field_static" id="OrDpv9z(=v+jmaemR2tt">
+                            <field name="TEXT">Desc:</field>
+                            <next>
+                              <block type="field_input" id="7VgL`75V}#.2`Ox7:rzp">
+                                <field name="TEXT"></field>
+                                <field name="FIELDNAME">DESCRIPTION</field>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="input_statement" id="A_xQOQY(wndly#?Z_s3u">
+            <field name="INPUTNAME">SETTINGS</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="XJPXa:ZKecWoYGNc0M54">
+                <field name="TEXT">Settings</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="jgmNP3Vs*wh!^ovf!i8g"></shadow>
+              <block type="type_other" id="[*AM/wNn!VbN{ak$?]sS">
+                <field name="TYPE">type-wexflow_task_setting</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="[Ks`B;@Sg7n)iq%o0=xE" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="(+#EN)x:3+PNO`7Z^PN1" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="Jecr,_AFn!h*FV$fej1i"></shadow>
+      <block type="type_other" id="I$6A,KkE,x/d{zU%~=fj">
+        <field name="TYPE">type-wexflow_task_single</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="1,lub.rkT~84uYfWLG53">
+        <mutation colour="#805ba5"></mutation>
+        <field name="HUE">270</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="rR2ahR?ajqEetv[4C@x:" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="LEFT"></mutation>
+    <field name="NAME">wexflow_events</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">LEFT</field>
+    <statement name="INPUTS">
+      <block type="input_statement" id="J]LlCIeH=G|f|[2ro[K#">
+        <field name="INPUTNAME">ONSUCCESS</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="W+YXn[[x67{-ziU15$RV">
+            <field name="TEXT">OnSuccess</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="KBSm:8G|:TRrxpfnGz9S"></shadow>
+          <block type="type_other" id="jbKr*sVkxGI@]h41a|:H">
+            <field name="TYPE">type-wexflow_graph_node</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_statement" id="cc9./lB5#`^~4aOA)twz">
+            <field name="INPUTNAME">ONWARNING</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="lJihg}!BO|or43d?+[hV">
+                <field name="TEXT">OnWarning</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="%[ZKJ[#zGop_0%}[qIB1"></shadow>
+              <block type="type_other" id="[3Sp6ez@@3^mm:?4odu+">
+                <field name="TYPE">type-wexflow_graph_node</field>
+              </block>
+            </value>
+            <next>
+              <block type="input_statement" id="]w=@Se(QA6aDLWg!`MR%">
+                <field name="INPUTNAME">ONERROR</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="a7?nZJ]r@Qb`0y2KXBmP">
+                    <field name="TEXT">OnError</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="vw[1C|%@A@4/6$vz.bnN"></shadow>
+                  <block type="type_other" id="ywF*QIE%LhGG0,p2!}*$">
+                    <field name="TYPE">type-wexflow_graph_node</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="az/,$J%*4jBmmx*as()T" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="en7X%n7sxJyu!TANk_AI" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="OUTPUTTYPE">
+      <shadow type="type_null" id="n0e$iEe)[adz[ncT80]J"></shadow>
+      <block type="type_other" id="tcL.=R6jgKJ$nFo{}qrc">
+        <field name="TYPE">type-wexflow_events</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="}XA5.^c;0g#*ww/YyPhB">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="{l4BMS/v,zWR5Sgl}G~t" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">wexflow_graph_while</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="%d}_!-iHV=OhOU40et8c">
+        <field name="INPUTNAME">WHILE</field>
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="#(T2wKN^t_J+Y4WRg-fl">
+            <field name="TEXT">WHILE</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="?fsq%bnT!@dl=uCTW5GB"></shadow>
+          <block type="type_other" id="DiA/9CyokPM(p!;c_S$?">
+            <field name="TYPE">type-wexflow_task_single</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_statement" id="KDFC?R!7~u?0pc16%.MI">
+            <field name="INPUTNAME">DO</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="cBzLU2#J:3Y-hkp9UW4W">
+                <field name="TEXT">do</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="YPAx:t,T_Gqw|sz$5Dut"></shadow>
+              <block type="type_other" id="A_pr#u,IolCgS0`vg]IF">
+                <field name="TYPE">type-wexflow_graph_node</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="zy2tCC2MS3OcyEvBkRq{" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="d8cU`B=We,6yfb(.YaA{" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="6AJ$k[_98b)j#lFoIleK"></shadow>
+      <block type="type_other" id="~#*vaszOO65YJO|XMv;=">
+        <field name="TYPE">type-wexflow_graph_node</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="5!s*1HL6a8#d!rLZI@:i"></shadow>
+      <block type="type_other" id="Jc4PC%tUx2NF~V=R#08O">
+        <field name="TYPE">type-wexflow_graph_node</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="/frh+hJw6h;A8as.Bv1f">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="{l4BMS/v,zWR5Sgl}G~t" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">wexflow_graph_switch</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="%d}_!-iHV=OhOU40et8c">
+        <field name="INPUTNAME">SWITCH</field>
+        <field name="ALIGN">RIGHT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="#(T2wKN^t_J+Y4WRg-fl">
+            <field name="TEXT">SWITCH</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="?fsq%bnT!@dl=uCTW5GB"></shadow>
+          <block type="type_other" id="DiA/9CyokPM(p!;c_S$?">
+            <field name="TYPE">type-wexflow_task_single</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_statement" id="KDFC?R!7~u?0pc16%.MI">
+            <field name="INPUTNAME">CASES</field>
+            <field name="ALIGN">LEFT</field>
+            <statement name="FIELDS">
+              <block type="field_static" id="cBzLU2#J:3Y-hkp9UW4W">
+                <field name="TEXT">cases:</field>
+              </block>
+            </statement>
+            <value name="TYPE">
+              <shadow type="type_null" id="YPAx:t,T_Gqw|sz$5Dut"></shadow>
+              <block type="type_other" id="A_pr#u,IolCgS0`vg]IF">
+                <field name="TYPE">type-wexflow_graph_switch_case</field>
+              </block>
+            </value>
+            <next>
+              <block type="input_statement" id="Mpapa?_nmpoZpkHl``A*">
+                <field name="INPUTNAME">DEFAULT</field>
+                <field name="ALIGN">LEFT</field>
+                <statement name="FIELDS">
+                  <block type="field_static" id="[p2pTQN(9P2y4Iu]z]+A">
+                    <field name="TEXT">default:</field>
+                  </block>
+                </statement>
+                <value name="TYPE">
+                  <shadow type="type_null" id="BYg6oGgFALD]1n)5Vz}v"></shadow>
+                  <block type="type_other" id="%zJ5O!TnMe_tOoyA+Zrv">
+                    <field name="TYPE">type-wexflow_graph_node</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="zy2tCC2MS3OcyEvBkRq{" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id="d8cU`B=We,6yfb(.YaA{" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="6AJ$k[_98b)j#lFoIleK"></shadow>
+      <block type="type_other" id="~#*vaszOO65YJO|XMv;=">
+        <field name="TYPE">type-wexflow_graph_node</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="5!s*1HL6a8#d!rLZI@:i"></shadow>
+      <block type="type_other" id="Jc4PC%tUx2NF~V=R#08O">
+        <field name="TYPE">type-wexflow_graph_node</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="/frh+hJw6h;A8as.Bv1f">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block><block type="factory_base" id="6D,8FhDQyH`G5an^m$rg" deletable="false" movable="false" x="0" y="0">
+    <mutation connections="BOTH"></mutation>
+    <field name="NAME">wexflow_graph_switch_case</field>
+    <field name="INLINE">AUTO</field>
+    <field name="CONNECTIONS">BOTH</field>
+    <statement name="INPUTS">
+      <block type="input_value" id="s!@j^#GUmoS:FbC{tAy@">
+        <field name="INPUTNAME">VALUE</field>
+        <field name="ALIGN">LEFT</field>
+        <statement name="FIELDS">
+          <block type="field_static" id="nQXYcTYTEQV608+@UL.J">
+            <field name="TEXT">CASE</field>
+          </block>
+        </statement>
+        <value name="TYPE">
+          <shadow type="type_null" id="7N)-jvy%B40%dUeMSm}U"></shadow>
+          <block type="type_other" id="a[;[rO5y)(b6%aPX*Yu3">
+            <field name="TYPE">type-wexflow_task_single</field>
+          </block>
+        </value>
+        <next>
+          <block type="input_statement" id="#xhc[GcQe[)0jtG+#7x=">
+            <field name="INPUTNAME">TASKS</field>
+            <field name="ALIGN">LEFT</field>
+            <value name="TYPE">
+              <shadow type="type_null" id="%6`+R0kI#ERWh-+(;6Sl"></shadow>
+              <block type="type_other" id=";pm!^v+s-5~,NjGoCV!j">
+                <field name="TYPE">type-wexflow_graph_node</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="TOOLTIP">
+      <block type="text" id="Lb:vVG1t^K}!Aoi}#7R2" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="HELPURL">
+      <block type="text" id=".A?Wn::by[K!KTnlh9oP" deletable="false" movable="false">
+        <field name="TEXT"></field>
+      </block>
+    </value>
+    <value name="TOPTYPE">
+      <shadow type="type_null" id="^)^t{D13Fo*Q)^n38M=p"></shadow>
+      <block type="type_other" id="MLzk_-n)iD8(G{eucVBU">
+        <field name="TYPE">type-wexflow_graph_switch_case</field>
+      </block>
+    </value>
+    <value name="BOTTOMTYPE">
+      <shadow type="type_null" id="0j%jVTDky-C(SX.BLycm"></shadow>
+      <block type="type_other" id="v/7sT2=C6Jw!b~kO@kx,">
+        <field name="TYPE">type-wexflow_graph_switch_case</field>
+      </block>
+    </value>
+    <value name="COLOUR">
+      <block type="colour_hue" id="e_,(pRw1yCT[5v/0@,6M">
+        <mutation colour="#5b67a5"></mutation>
+        <field name="HUE">230</field>
+      </block>
+    </value>
+  </block></xml>

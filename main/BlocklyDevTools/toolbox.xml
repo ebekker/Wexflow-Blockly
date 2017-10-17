@@ -1,0 +1,27 @@
+<xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+  <category name="Workflow">
+    <block type="wexflow_workflow_settings">
+      <statement name="NAME">
+        <block type="wexflow_workflow_setting">
+          <field name="NAME">name</field>
+          <field name="VALUE">default</field>
+        </block>
+      </statement>
+    </block>
+    <block type="wexflow_workflow_setting">
+      <field name="NAME">name</field>
+      <field name="VALUE">default</field>
+    </block>
+  </category>
+  <category name="Tasks">
+    <block type="wexflow_task">
+      <field name="NAME">name</field>
+      <field name="ENABLED">TRUE</field>
+      <field name="DESCRIPTION"></field>
+    </block>
+    <block type="wexflow_task_setting">
+      <field name="NAME">name</field>
+      <field name="VALUE">default</field>
+    </block>
+  </category>
+</xml>
