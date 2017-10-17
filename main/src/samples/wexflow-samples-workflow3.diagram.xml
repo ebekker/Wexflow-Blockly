@@ -1,0 +1,88 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables></variables>
+  <block type="wexflow_workflow" id="!3)d$.Xsm{eL{l?ke-^]" x="30" y="30">
+    <statement name="SETTINGS">
+      <block type="wexflow_workflow_setting" id="#)zETZ?[DE1#n!MF5oR=">
+        <field name="NAME">launchType</field>
+        <field name="VALUE">trigger</field>
+        <next>
+          <block type="wexflow_workflow_setting" id="x+~%XvmL=ey/;6x-~wXa">
+            <field name="NAME">enabled</field>
+            <field name="VALUE">true</field>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="GRAPH">
+      <block type="wexflow_task" id="XVp1lDq/2N!iIRx+$P(2">
+        <field name="NAME">FilesLoader</field>
+        <field name="ENABLED">TRUE</field>
+        <field name="DESCRIPTION">Loading WAV files</field>
+        <statement name="SETTINGS">
+          <block type="wexflow_task_setting" id="IDB=ekj%wa#swD}[v2{N">
+            <field name="NAME">folder</field>
+            <field name="VALUE">C:\WexflowTesting\WAV\</field>
+          </block>
+        </statement>
+        <next>
+          <block type="wexflow_task" id="g`$k$pq4?@B`ghW]cLwN">
+            <field name="NAME">ProcessLauncher</field>
+            <field name="ENABLED">TRUE</field>
+            <field name="DESCRIPTION">WAV to MP3</field>
+            <statement name="SETTINGS">
+              <block type="wexflow_task_setting" id="6DUX:~$5B7ewFkXfgd+F">
+                <field name="NAME">selectFiles</field>
+                <field name="VALUE">1</field>
+                <next>
+                  <block type="wexflow_task_setting" id="c#vu|9jEt/H?-zi?^.Ba">
+                    <field name="NAME">processPath</field>
+                    <field name="VALUE">C:\Program Files\ffmpeg\bin\ffmpeg.exe</field>
+                    <comment pinned="false" h="51" w="303">You need to install FFMPEG</comment>
+                    <next>
+                      <block type="wexflow_task_setting" id="%riW6]f:rTD.W^$D=0Nc">
+                        <field name="NAME">processCmd</field>
+                        <field name="VALUE">-i {$filePath} -codec:a libmp3lame -qscale:a 2 {$output:$fileNameWithoutExtension.mp3}</field>
+                        <comment pinned="false" h="50" w="614">variables: {$filePath},{$fileName},{$fileNameWithoutExtension}</comment>
+                        <next>
+                          <block type="wexflow_task_setting" id=")8,Ia|*XT.]~U|$7?(a,">
+                            <field name="NAME">hideGui</field>
+                            <field name="VALUE">true</field>
+                            <next>
+                              <block type="wexflow_task_setting" id="nm!a@KsfLY[*$~2QSSHW">
+                                <field name="NAME">generatesFiles</field>
+                                <field name="VALUE">true</field>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="wexflow_task" id="BPzwUB,#u?qQjB.*m=A3">
+                <field name="NAME">FilesMover</field>
+                <field name="ENABLED">TRUE</field>
+                <field name="DESCRIPTION">Moving MP3 files from temp folder</field>
+                <statement name="SETTINGS">
+                  <block type="wexflow_task_setting" id="L^ZJAEvq^a;[gT[|]]i^">
+                    <field name="NAME">selectFiles</field>
+                    <field name="VALUE">2</field>
+                    <next>
+                      <block type="wexflow_task_setting" id="dT!m#;u.3HXK6VZl)QQ,">
+                        <field name="NAME">destFolder</field>
+                        <field name="VALUE">C:\WexflowTesting\MP3\</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

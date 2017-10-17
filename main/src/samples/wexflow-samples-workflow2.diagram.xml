@@ -1,0 +1,118 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables></variables>
+  <block type="wexflow_workflow" id="hO~JxTwYX{!|oY1jbpe6" x="10" y="10">
+    <statement name="SETTINGS">
+      <block type="wexflow_workflow_setting" id="V3W21E:md7lnhtcA_2T0">
+        <field name="NAME">launchType</field>
+        <field name="VALUE">periodic</field>
+        <next>
+          <block type="wexflow_workflow_setting" id="C*U)53XpUc:C[SSmeYXw">
+            <field name="NAME">period</field>
+            <field name="VALUE">00.00:02:00.00</field>
+            <next>
+              <block type="wexflow_workflow_setting" id="3S%,xZ$*lHD$9P!Hqkjl">
+                <field name="NAME">enabled</field>
+                <field name="VALUE">true</field>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="GRAPH">
+      <block type="wexflow_task" id="a{MJVGXCI2Jb=;=S$}YA">
+        <field name="NAME">FilesLoader</field>
+        <field name="ENABLED">TRUE</field>
+        <field name="DESCRIPTION">Loading files</field>
+        <statement name="SETTINGS">
+          <block type="wexflow_task_setting" id="zOW.32nQw4.^d1i*2lnA">
+            <field name="NAME">folder</field>
+            <field name="VALUE">C:\WexflowTesting\Watchfolder1\</field>
+            <next>
+              <block type="wexflow_task_setting" id="HUb7t3[t3zw4__tn[.Wc">
+                <field name="NAME">folder</field>
+                <field name="VALUE">C:\WexflowTesting\Watchfolder2\</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="wexflow_task" id="pWCgL4MJ%%C`.reD^1il">
+            <field name="NAME">Ftp</field>
+            <field name="ENABLED">TRUE</field>
+            <field name="DESCRIPTION">Uploading invoices</field>
+            <statement name="SETTINGS">
+              <block type="wexflow_task_setting" id="^B~6@X_80eStEvtmMTZ#">
+                <field name="NAME">protocol</field>
+                <field name="VALUE">ftp</field>
+                <comment pinned="false" h="78" w="330">ftp|ftps|sftp</comment>
+                <next>
+                  <block type="wexflow_task_setting" id=":T/~dN-a~yJo+ixCaH}n">
+                    <field name="NAME">command</field>
+                    <field name="VALUE">upload</field>
+                    <comment pinned="false" h="70" w="361">list|upload|download|delete</comment>
+                    <next>
+                      <block type="wexflow_task_setting" id="5BI2jWG5$$s{f?)piOMX">
+                        <field name="NAME">server</field>
+                        <field name="VALUE">127.0.0.1</field>
+                        <next>
+                          <block type="wexflow_task_setting" id="g=xx0Y4UF7E`kw.Vj_/+">
+                            <field name="NAME">port</field>
+                            <field name="VALUE">21</field>
+                            <next>
+                              <block type="wexflow_task_setting" id="YS|xV^3]_YegHe;YL{+d">
+                                <field name="NAME">user</field>
+                                <field name="VALUE">user</field>
+                                <next>
+                                  <block type="wexflow_task_setting" id="uf~bknS..x89:fXxLf{$">
+                                    <field name="NAME">password</field>
+                                    <field name="VALUE">password</field>
+                                    <next>
+                                      <block type="wexflow_task_setting" id="aEFc,V-YW?7##0BD%J2;">
+                                        <field name="NAME">path</field>
+                                        <field name="VALUE">/</field>
+                                        <next>
+                                          <block type="wexflow_task_setting" id="?[t$2:=zz@{u$h(oQ=Wt">
+                                            <field name="NAME">selectFiles</field>
+                                            <field name="VALUE">1</field>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="wexflow_task" id="0RV$%6s+pKtFv+Kz3`jF">
+                <field name="NAME">FilesMover</field>
+                <field name="ENABLED">TRUE</field>
+                <field name="DESCRIPTION">Moving invoices</field>
+                <statement name="SETTINGS">
+                  <block type="wexflow_task_setting" id="mV*3v:ui5yR#y)?ss*gY">
+                    <field name="NAME">selectFiles</field>
+                    <field name="VALUE">1</field>
+                    <next>
+                      <block type="wexflow_task_setting" id="@36m;!:plxs^ml2zCAmt">
+                        <field name="NAME">destFolder</field>
+                        <field name="VALUE">C:\WexflowTesting\Sent\</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

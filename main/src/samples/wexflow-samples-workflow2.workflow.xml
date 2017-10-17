@@ -1,0 +1,37 @@
+<?xml version='1.0'?>
+<Workflow xmlns="urn:wexflow-schema" id="1" name="TBD" description="TBD">
+
+<Settings>
+  <Setting name="launchType" value="periodic" />
+  <Setting name="period" value="00.00:02:00.00" />
+  <Setting name="enabled" value="true" />
+</Settings>
+<Tasks>
+  <Task id="1" name="FilesLoader" description="Loading files" enabled="true">
+    <Setting name="folder" value="C:\WexflowTesting\Watchfolder1\" />
+    <Setting name="folder" value="C:\WexflowTesting\Watchfolder2\" />
+  </Task>
+  <Task id="2" name="Ftp" description="Uploading invoices" enabled="true">
+    <!-- ftp|ftps|sftp -->
+    <Setting name="protocol" value="ftp" />
+    <!-- list|upload|download|delete -->
+    <Setting name="command" value="upload" />
+    <Setting name="server" value="127.0.0.1" />
+    <Setting name="port" value="21" />
+    <Setting name="user" value="user" />
+    <Setting name="password" value="password" />
+    <Setting name="path" value="/" />
+    <Setting name="selectFiles" value="1" />
+  </Task>
+  <Task id="3" name="FilesMover" description="Moving invoices" enabled="true">
+    <Setting name="selectFiles" value="1" />
+    <Setting name="destFolder" value="C:\WexflowTesting\Sent\" />
+  </Task>
+</Tasks>
+<ExecutionGraph>
+  <Task id="1"><Parent id="-1" /></Task>
+  <Task id="2"><Parent id="1" /></Task>
+  <Task id="3"><Parent id="2" /></Task>
+</ExecutionGraph>
+
+</Workflow>

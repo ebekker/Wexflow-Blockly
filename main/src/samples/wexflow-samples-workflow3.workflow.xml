@@ -1,0 +1,32 @@
+<?xml version='1.0'?>
+<Workflow xmlns="urn:wexflow-schema" id="1" name="TBD" description="TBD">
+
+<Settings>
+  <Setting name="launchType" value="trigger" />
+  <Setting name="enabled" value="true" />
+</Settings>
+<Tasks>
+  <Task id="1" name="FilesLoader" description="Loading WAV files" enabled="true">
+    <Setting name="folder" value="C:\WexflowTesting\WAV\" />
+  </Task>
+  <Task id="2" name="ProcessLauncher" description="WAV to MP3" enabled="true">
+    <Setting name="selectFiles" value="1" />
+    <!-- You need to install FFMPEG -->
+    <Setting name="processPath" value="C:\Program Files\ffmpeg\bin\ffmpeg.exe" />
+    <!-- variables: {$filePath},{$fileName},{$fileNameWithoutExtension} -->
+    <Setting name="processCmd" value="-i {$filePath} -codec:a libmp3lame -qscale:a 2 {$output:$fileNameWithoutExtension.mp3}" />
+    <Setting name="hideGui" value="true" />
+    <Setting name="generatesFiles" value="true" />
+  </Task>
+  <Task id="3" name="FilesMover" description="Moving MP3 files from temp folder" enabled="true">
+    <Setting name="selectFiles" value="2" />
+    <Setting name="destFolder" value="C:\WexflowTesting\MP3\" />
+  </Task>
+</Tasks>
+<ExecutionGraph>
+  <Task id="1"><Parent id="-1" /></Task>
+  <Task id="2"><Parent id="1" /></Task>
+  <Task id="3"><Parent id="2" /></Task>
+</ExecutionGraph>
+
+</Workflow>
