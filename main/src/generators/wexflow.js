@@ -102,6 +102,11 @@ Blockly.Wexflow.addReservedWords(
  * @param {!Blockly.Workspace} workspace Workspace to generate code from.
  */
 Blockly.Wexflow.init = function(workspace) {
+  // Create a place to stash the task defs and most recent task IDs
+  Blockly.Wexflow.tasks_ = [];
+  Blockly.Wexflow.thisTaskId_ = -1;
+  Blockly.Wexflow.lastTaskId_ = -1;
+
   // // // Create a dictionary of definitions to be printed before the code.
   // // Blockly.PHP.definitions_ = Object.create(null);
   // // // Create a dictionary mapping desired function names in definitions_
@@ -143,10 +148,50 @@ Blockly.Wexflow.finish = function(code) {
   // // Blockly.PHP.variableDB_.reset();
   // // return definitions.join('\n\n') + '\n\n\n' + code;
 
-  return "<?xml version='1.0'?>\n" +
-    "<Workflow xmlns=\"urn:wexflow-schema\" id=\"1\" name=\"Workflow_CsvToXml\" description=\"Workflow_CsvToXml\">"
-        + code + "</Workflow>";
+  return "<?xml version='1.0'?>\n"
+      + "<Workflow xmlns=\"urn:wexflow-schema\" id=\"1\" name=\"TBD\" description=\"TBD\">\n"
+      + '\n' + code + '\n'
+      + "</Workflow>";
 };
+
+Blockly.Wexflow.addTask = function(name, desc, enabled, settings) {
+
+  var taskId = Blockly.Wexflow.tasks_.length + 1;
+
+  if (enabled) {
+    enabled = 'true'
+  }
+  else {
+    enabled = 'false'
+  }
+
+  if (settings) {
+    settings = settings.replace(/^  </gm, '    <');
+  }
+
+  var code = '  <Task id="' + taskId + '" name="' + name + '" description="' + desc
+      + '" enabled="' + enabled + '">\n'
+      + settings
+      + '  </Task>\n';
+
+  Blockly.Wexflow.tasks_ = Blockly.Wexflow.tasks_.concat(code);
+  Blockly.Wexflow.lastTaskId_ = Blockly.Wexflow.thisTaskId_;
+  Blockly.Wexflow.thisTaskId_ = taskId;
+  return taskId;
+}
+Blockly.Wexflow.addEmpty = function() {
+
+  var taskId = Blockly.Wexflow.tasks_.length + 1;
+
+  Blockly.Wexflow.tasks_ = Blockly.Wexflow.tasks_.concat('');
+  Blockly.Wexflow.lastTaskId_ = Blockly.Wexflow.thisTaskId_;
+  Blockly.Wexflow.thisTaskId_ = taskId;
+  return taskId;
+}
+Blockly.Wexflow.resetTaskIds = function() {
+  Blockly.Wexflow.thisTaskId_ = -1;
+  Blockly.Wexflow.lastTaskId_ = -1;
+}
 
 // // /**
 // //  * Naked values are top-level blocks with outputs that aren't plugged into
@@ -299,14 +344,20 @@ Blockly.Wexflow['wexflow_workflow'] = function(block) {
         + statements_settings
         + '</Settings>\n';
   }
+  if (Blockly.Wexflow.tasks_.length > 0) {
+    code += '<Tasks>\n';
+    Blockly.Wexflow.tasks_.forEach(function(t) {
+      code += t;
+    })
+    code += '</Tasks>\n';
+  }
   if (statements_graph) {
-    code += '<Tasks>\n'
+    code += '<ExecutionGraph>\n'
         + statements_graph
-        + '</Tasks>\n';
+        + '</ExecutionGraph>\n';
   }
   if (value_events) {
-    // TODO:
-    code += '';
+    code += value_events;
   }
   return code;
 };
@@ -326,8 +377,10 @@ Blockly.Wexflow['wexflow_task'] = function(block) {
 
   var statements_settings = Blockly.Wexflow.statementToCode(block, 'SETTINGS');
 
-  var code = '<Task name="' + text_name + '" description="' + text_description
-      + '" enabled="' + checkbox_enabled + '">\n' + statements_settings + '</Task>\n';
+  Blockly.Wexflow.addTask(text_name, text_description, checkbox_enabled, statements_settings);
+
+  var code = '<Task id="' + Blockly.Wexflow.thisTaskId_ + '"><Parent id="' + Blockly.Wexflow.lastTaskId_ + '" /></Task>\n';
+
   return code;
 };
 
@@ -338,14 +391,15 @@ Blockly.Wexflow['wexflow_task_setting'] = function(block) {
   return code;
 };
 
-
-
-
-
-
 Blockly.Wexflow['wexflow_events'] = function(block) {
+
+  Blockly.Wexflow.resetTaskIds();
   var statements_onsuccess = Blockly.Wexflow.statementToCode(block, 'ONSUCCESS');
+
+  Blockly.Wexflow.resetTaskIds();
   var statements_onwarning = Blockly.Wexflow.statementToCode(block, 'ONWARNING');
+
+  Blockly.Wexflow.resetTaskIds();
   var statements_onerror = Blockly.Wexflow.statementToCode(block, 'ONERROR');
 
   var code = '';
@@ -360,56 +414,112 @@ Blockly.Wexflow['wexflow_events'] = function(block) {
         + '</OnWarning>\n';
   }
   if (statements_onerror) {
-    code += '<OnSuccess>\n'
+    code += '<OnError>\n'
         + statements_onerror
-        + '</OnSuccess>\n';
+        + '</OnError>\n';
   }
 
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Wexflow.ORDER_NONE];
 };
 
-Blockly.JavaScript['wexflow_task_single'] = function(block) {
+// TODO:  THIS IS DUP CODE with 'wexflow_task'
+Blockly.Wexflow['wexflow_task_single'] = function(block) {
   var text_name = block.getFieldValue('NAME');
-  var checkbox_enabled = block.getFieldValue('ENABLED') == 'TRUE';
   var text_description = block.getFieldValue('DESCRIPTION');
-  var statements_settings = Blockly.JavaScript.statementToCode(block, 'SETTINGS');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  var checkbox_enabled = block.getFieldValue('ENABLED') == 'TRUE';
+
+  var statements_settings = Blockly.Wexflow.statementToCode(block, 'SETTINGS');
+
+  Blockly.Wexflow.addTask(text_name, text_description, checkbox_enabled, statements_settings);
+
+  // Singles don't return anything inline -- the block
+  // they attach to will take care of rendering code
+  return '';
 };
 
-Blockly.JavaScript['wexflow_graph_if'] = function(block) {
-  var value_if = Blockly.JavaScript.valueToCode(block, 'IF', Blockly.JavaScript.ORDER_ATOMIC);
-  var statements_do = Blockly.JavaScript.statementToCode(block, 'DO');
-  var statements_else = Blockly.JavaScript.statementToCode(block, 'ELSE');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+Blockly.Wexflow['wexflow_graph_if'] = function(block) {
+  var value_if = Blockly.Wexflow.valueToCode(block, 'IF', Blockly.Wexflow.ORDER_ATOMIC);
+
+  var taskId = Blockly.Wexflow.thisTaskId_;
+  var lastId = Blockly.Wexflow.lastTaskId_;
+
+  Blockly.Wexflow.resetTaskIds();
+  var statements_do = Blockly.Wexflow.statementToCode(block, 'DO');
+
+  Blockly.Wexflow.resetTaskIds();
+  var statements_else = Blockly.Wexflow.statementToCode(block, 'ELSE');
+
+  var myId = Blockly.Wexflow.addEmpty();
+
+  var code = '<If id="' + myId + '" parent="' + lastId + '" if="' + taskId + '">\n'
+  if (statements_do) {
+    code += '<Do>\n' + statements_do + '</Do>\n';
+  }
+  if (statements_else) {
+    code += '<Else>\n' + statements_else + '</Else>\n';
+  }
+  code += '</If>\n';
+
   return code;
 };
 
-Blockly.JavaScript['wexflow_graph_while'] = function(block) {
-  var value_while = Blockly.JavaScript.valueToCode(block, 'WHILE', Blockly.JavaScript.ORDER_ATOMIC);
-  var statements_do = Blockly.JavaScript.statementToCode(block, 'DO');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+Blockly.Wexflow['wexflow_graph_while'] = function(block) {
+  var value_while = Blockly.Wexflow.valueToCode(block, 'WHILE', Blockly.Wexflow.ORDER_ATOMIC);
+
+  var taskId = Blockly.Wexflow.thisTaskId_;
+  var lastId = Blockly.Wexflow.lastTaskId_;
+
+  Blockly.Wexflow.resetTaskIds();
+  var statements_do = Blockly.Wexflow.statementToCode(block, 'DO');
+
+  var myId = Blockly.Wexflow.addEmpty();
+
+  var code = '<While id="' + myId + '" parent="' + lastId + '" if="' + taskId + '">\n'
+  if (statements_do) {
+    code += statements_do;
+  }
+  code += '</While>\n';
+
   return code;
 };
 
-Blockly.JavaScript['wexflow_graph_switch'] = function(block) {
-  var value_switch = Blockly.JavaScript.valueToCode(block, 'SWITCH', Blockly.JavaScript.ORDER_ATOMIC);
-  var statements_cases = Blockly.JavaScript.statementToCode(block, 'CASES');
-  var statements_default = Blockly.JavaScript.statementToCode(block, 'DEFAULT');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+Blockly.Wexflow['wexflow_graph_switch'] = function(block) {
+  var value_switch = Blockly.Wexflow.valueToCode(block, 'SWITCH', Blockly.Wexflow.ORDER_ATOMIC);
+
+  var taskId = Blockly.Wexflow.thisTaskId_;
+  var lastId = Blockly.Wexflow.lastTaskId_;
+
+  var statements_cases = Blockly.Wexflow.statementToCode(block, 'CASES');
+
+  Blockly.Wexflow.resetTaskIds();
+  var statements_default = Blockly.Wexflow.statementToCode(block, 'DEFAULT');
+
+  var myId = Blockly.Wexflow.addEmpty();
+
+  var code = '<Switch id="' + myId + '" parent="' + lastId + '" if="' + taskId + '">\n'
+  if (statements_cases) {
+    code += statements_cases;
+  }
+  if (statements_default) {
+    code += '<Default>\n' + statements_default + '</Default>\n';
+  }
+  code += '</Switch>\n';
+
   return code;
 };
 
-Blockly.JavaScript['wexflow_graph_switch_case'] = function(block) {
-  var value_value = Blockly.JavaScript.valueToCode(block, 'VALUE', Blockly.JavaScript.ORDER_ATOMIC);
-  var statements_tasks = Blockly.JavaScript.statementToCode(block, 'TASKS');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+Blockly.Wexflow['wexflow_graph_switch_case'] = function(block) {
+  var text_value = Blockly.Wexflow.sanitizeXmlValue(block.getFieldValue('VALUE'));
+
+  Blockly.Wexflow.resetTaskIds();
+  var statements_tasks = Blockly.Wexflow.statementToCode(block, 'TASKS');
+
+  var code = '<Case value="' + text_value + '">\n';
+  if (statements_tasks) {
+    code += statements_tasks;
+  }
+  code += '</Case>\n';
+
   return code;
 };

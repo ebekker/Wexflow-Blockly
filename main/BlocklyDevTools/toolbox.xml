@@ -1,19 +1,10 @@
 <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
   <category name="Workflow">
-    <block type="wexflow_workflow_settings">
-      <statement name="NAME">
-        <block type="wexflow_workflow_setting">
-          <field name="NAME">name</field>
-          <field name="VALUE">default</field>
-        </block>
-      </statement>
-    </block>
+    <block type="wexflow_workflow"></block>
     <block type="wexflow_workflow_setting">
       <field name="NAME">name</field>
       <field name="VALUE">default</field>
     </block>
-  </category>
-  <category name="Tasks">
     <block type="wexflow_task">
       <field name="NAME">name</field>
       <field name="ENABLED">TRUE</field>
@@ -22,6 +13,49 @@
     <block type="wexflow_task_setting">
       <field name="NAME">name</field>
       <field name="VALUE">default</field>
+    </block>
+    <block type="wexflow_events"></block>
+  </category>
+  <category name="Flowchart">
+    <block type="wexflow_task_single">
+      <field name="NAME">name</field>
+      <field name="ENABLED">TRUE</field>
+      <field name="DESCRIPTION"></field>
+    </block>
+    <block type="wexflow_graph_if">
+      <value name="IF">
+        <block type="wexflow_task_single">
+          <field name="NAME">name</field>
+          <field name="ENABLED">TRUE</field>
+          <field name="DESCRIPTION"></field>
+        </block>
+      </value>
+    </block>
+    <block type="wexflow_graph_while">
+      <value name="WHILE">
+        <block type="wexflow_task_single">
+          <field name="NAME">name</field>
+          <field name="ENABLED">TRUE</field>
+          <field name="DESCRIPTION"></field>
+        </block>
+      </value>
+    </block>
+    <block type="wexflow_graph_switch">
+      <value name="SWITCH">
+        <block type="wexflow_task_single">
+          <field name="NAME">name</field>
+          <field name="ENABLED">TRUE</field>
+          <field name="DESCRIPTION"></field>
+        </block>
+      </value>
+      <statement name="CASES">
+        <block type="wexflow_graph_switch_case">
+          <field name="VALUE">value</field>
+        </block>
+      </statement>
+    </block>
+    <block type="wexflow_graph_switch_case">
+      <field name="VALUE">value</field>
     </block>
   </category>
 </xml>
