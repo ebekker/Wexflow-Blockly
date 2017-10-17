@@ -353,11 +353,11 @@ Blockly.Wexflow['wexflow_workflow'] = function(block) {
   }
   if (statements_graph) {
     code += '<ExecutionGraph>\n'
-        + statements_graph
-        + '</ExecutionGraph>\n';
-  }
-  if (value_events) {
-    code += value_events;
+        + statements_graph;
+    if (value_events) {
+      code += value_events.replace(/^/gm, '  ');
+    }
+    code += '</ExecutionGraph>\n';
   }
   return code;
 };
@@ -475,7 +475,7 @@ Blockly.Wexflow['wexflow_graph_while'] = function(block) {
 
   var myId = Blockly.Wexflow.addEmpty();
 
-  var code = '<While id="' + myId + '" parent="' + lastId + '" if="' + taskId + '">\n'
+  var code = '<While id="' + myId + '" parent="' + lastId + '" while="' + taskId + '">\n'
   if (statements_do) {
     code += statements_do;
   }
@@ -497,7 +497,7 @@ Blockly.Wexflow['wexflow_graph_switch'] = function(block) {
 
   var myId = Blockly.Wexflow.addEmpty();
 
-  var code = '<Switch id="' + myId + '" parent="' + lastId + '" if="' + taskId + '">\n'
+  var code = '<Switch id="' + myId + '" parent="' + lastId + '" switch="' + taskId + '">\n'
   if (statements_cases) {
     code += statements_cases;
   }
