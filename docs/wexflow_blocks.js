@@ -134,7 +134,7 @@ Blockly.Blocks['wexflow_workflow'] = {
   Blockly.Blocks['wexflow_task_single'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("Task")
+          .appendField("Value Task")
           .appendField(new Blockly.FieldTextInput("name"), "NAME")
           .appendField("Enabled:")
           .appendField(new Blockly.FieldCheckbox("TRUE"), "ENABLED")
