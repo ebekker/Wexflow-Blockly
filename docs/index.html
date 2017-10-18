@@ -45,10 +45,10 @@
         }
     </style>
     <script src="blockly_compressed.js"></script>
-    <script src="generators/wexflow.js"></script>
+    <script src="wexflow-generator.js"></script>
     <script src="blocks_compressed.js"></script>
     <script src="msg/js/en.js"></script>
-    <script src="wexflow_blocks.js"></script>
+    <script src="wexflow-blocks.js"></script>
     <script src="storage.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
 </head>
@@ -129,19 +129,6 @@
                     </category>
                     <sep></sep>
                 </xml>
-                  <!-- <xml id="toolbox" style="display: none">
-                    <category name="Logic" expanded="true">
-                        <block type="controls_if"></block>
-                        <block type="controls_repeat_ext"></block>
-                        <block type="logic_compare"></block>
-                    </category>
-                    <category name="Misc" expanded="true">
-                        <block type="math_number"></block>
-                        <block type="math_arithmetic"></block>
-                        <block type="text"></block>
-                        <block type="text_print"></block>
-                    </category>
-                </xml> -->
             </td>
             <td><!--top-right--></td>
         </tr>
@@ -179,6 +166,7 @@
     </table>
 
     <script>
+        // Create and configure the main Blockly workspace
         var mainWorkspace = Blockly.inject('blocklyArea', {
             toolbox: document.getElementById('toolbox'),
             trashcan: true,
@@ -194,7 +182,9 @@
             scrollbars: true,
             zoom: {
                 controls: true,
-                wheel: false, // found true to be annoying since we usually want the wheel to move up or down
+                // enabling this was found true to be annoying since we
+                // usually want the wheel to move up or down, not in or out
+                wheel: false,
                 startScale: 1.0,
                 maxScale: 3,
                 minScale: 0.3,
@@ -202,25 +192,8 @@
             },
             oneBasedIndex: false,
             readOnly: false
-
-            // collapse:	boolean	Allows blocks to be collapsed or expanded. Defaults to true if the toolbox has categories, false otherwise.
-            // comments:	boolean	Allows blocks to have comments. Defaults to true if the toolbox has categories, false otherwise.
-            // css:	boolean	If false, don't inject CSS (providing CSS becomes the document's responsibility). Defaults to true.
-            // disable:	boolean	Allows blocks to be disabled. Defaults to true if the toolbox has categories, false otherwise.
-            // grid:	object	Configures a grid which blocks may snap to. See Grid...
-            // horizontalLayout:	boolean	If true toolbox is horizontal, if false toolbox is vertical. Defaults to false.
-            // maxBlocks:	number	Maximum number of blocks that may be created. Useful for student exercises. Defaults to Infinity.
-            // media:	string	Path from page (or frame) to the Blockly media directory. Defaults to "https://blockly-demo.appspot.com/static/media/".
-            // oneBasedIndex:	boolean	If true list and string operations should index from 1, if false index from 0. Defaults to true.
-            // readOnly:	boolean	If true, prevent the user from editing. Supresses the toolbox and trashcan. Defaults to false.
-            // rtl:	boolean	If true, mirror the editor (for Arabic or Hebrew locales). See RTL demo. Defaults to false.
-            // scrollbars:	boolean	Sets whether the workspace is scrollable or not. Defaults to true if the toolbox has categories, false otherwise.
-            // sounds:	boolean	If false, don't play sounds (e.g. click and delete). Defaults to true.
-            // toolbox:	XML nodes or string	Tree structure of categories and blocks available to the user. See below for more information.
-            // toolboxPosition:	string	If "start" toolbox is on top (if horizontal) or left (if vertical and LTR) or right (if vertical and RTL). If "end" toolbox is on opposite side. Defaults to "start".
-            // trashcan:	boolean	Displays or hides the trashcan. Defaults to true if the toolbox has categories, false otherwise.
-            // zoom:	object	Configures zooming behaviour. See Zoom...
         });
+
         // Makes sure orphans can't *float* on the page
         mainWorkspace.addChangeListener(Blockly.Events.disableOrphans);
 
@@ -240,20 +213,34 @@
         //var rootBlock = '<xml><block type="wexflow_workflow" deletable="false" movable="false"></block></xml>';
         //Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(rootBlock), workspace);
 
+        //
+        // Button handlers and supporting functions
+        //
+
         function generateCode() {
             console.log("Generating...");
             var code = Blockly.Wexflow.workspaceToCode(mainWorkspace);
             console.log("Generated: " + code);
         }
+
+        // TODO: INCOMPLETE
         function copyCode() {
             var xml = Blockly.Xml.workspaceToDom(mainWorkspace);
             // Ugly:
             //var xml_text = Blockly.Xml.domToText(xml);
             // Pretty:
             var xml_text = Blockly.Xml.domToPrettyText(xml);
-            
-            download('wexflow.diagram.xml', xml_text);
+
+            // TODO: how do we stick this in the clipboard???
         }
+        // TODO: INCOMPLETE
+        function pasteCode() {
+            // TODO: how do we get stuff out of the clipboard???
+            var xml_text = '???'
+            var xml = Blockly.Xml.textToDom(e.target.result);
+            Blockly.Xml.domToWorkspace(xml, mainWorkspace);
+        }
+
         function saveCode() {
             var xml = Blockly.Xml.workspaceToDom(mainWorkspace);
             // Ugly:
@@ -265,10 +252,12 @@
         function loadCode() {
             document.getElementById('load_file').click();
         }
+
         function exportCode() {
             var code = Blockly.Wexflow.workspaceToCode(mainWorkspace);
             download('wexflow.workflow.xml', code);
         }
+
         function clearCode() {
             mainWorkspace.clear();
         }
@@ -320,6 +309,9 @@
             xmlhttp.open("GET", theUrl, false );
             xmlhttp.send();
         }
+
+        // Register a message handler for the window so that we can
+        // receive requests from our child pop-out window to open a sample
         window.addEventListener('message', function(event) {
             var prefix = 'openSample:';
             var eventData = event.data;

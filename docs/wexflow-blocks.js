@@ -1,3 +1,5 @@
+// Defines all the custom Wexflow blocks
+
 Blockly.Blocks['wexflow_diagram_text_single'] = {
   init: function() {
     this.appendDummyInput()
