@@ -107,6 +107,10 @@ Blockly.Wexflow.init = function(workspace) {
   Blockly.Wexflow.thisTaskId_ = -1;
   Blockly.Wexflow.lastTaskId_ = -1;
 
+  Blockly.Wexflow.workflowId_ = 0;
+  Blockly.Wexflow.workflowName_ = 'NoName';
+  Blockly.Wexflow.workflowDescription_ = '';
+
   // // // Create a dictionary of definitions to be printed before the code.
   // // Blockly.PHP.definitions_ = Object.create(null);
   // // // Create a dictionary mapping desired function names in definitions_
@@ -148,10 +152,12 @@ Blockly.Wexflow.finish = function(code) {
   // // Blockly.PHP.variableDB_.reset();
   // // return definitions.join('\n\n') + '\n\n\n' + code;
 
-  return "<?xml version='1.0'?>\n"
-      + "<Workflow xmlns=\"urn:wexflow-schema\" id=\"1\" name=\"TBD\" description=\"TBD\">\n"
+  return '<?xml version="1.0"?>\n'
+      + '<Workflow xmlns="urn:wexflow-schema" id="' + Blockly.Wexflow.workflowId_
+      + '" name="' + Blockly.Wexflow.workflowName_
+      + '" description="' + Blockly.Wexflow.workflowDescription_ + '">\n'
       + '\n' + code + '\n'
-      + "</Workflow>";
+      + '</Workflow>';
 };
 
 Blockly.Wexflow.addTask = function(name, desc, enabled, settings) {
@@ -339,6 +345,20 @@ Blockly.Wexflow['wexflow_diagram_text_group'] = function(block) { return ''; }
 Blockly.Wexflow['wexflow_diagram_text_multi'] = function(block) { return ''; }
 
 Blockly.Wexflow['wexflow_workflow'] = function(block) {
+  var text_id = block.getFieldValue('ID');
+  var text_name = block.getFieldValue('NAME');
+  var text_description = block.getFieldValue('DESCRIPTION');
+
+  if (text_id) {// != '(id)') {
+    Blockly.Wexflow.workflowId_ = text_id;
+  }
+  if (text_name) {// != '(name)') {
+    Blockly.Wexflow.workflowName_ = text_name;
+  }
+  if (text_description) {// != '(description)') {
+    Blockly.Wexflow.workflowDescription_ = text_description;
+  }
+
   var statements_settings = Blockly.Wexflow.statementToCode(block, 'SETTINGS');
   var statements_graph = Blockly.Wexflow.statementToCode(block, 'GRAPH');
   var value_events = Blockly.Wexflow.valueToCode(block, 'EVENTS', Blockly.Wexflow.ORDER_ATOMIC);
