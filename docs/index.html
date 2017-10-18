@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Blockly Demo: Resizable Blockly (Part 1)</title>
+    <title>Wexflow Graphical Editor</title>
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -50,12 +50,13 @@
     <script src="msg/js/en.js"></script>
     <script src="wexflow_blocks.js"></script>
     <script src="storage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
 </head>
 
 <body>
     <table>
         <tr>
-            <td>top-left</td>
+            <td><!-- top-left --></td>
             <td>
                 <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
                     <category name="Workflow">
@@ -136,22 +137,30 @@
                     </category>
                 </xml> -->
             </td>
-            <td>top-right</td>
+            <td><!--top-right--></td>
         </tr>
         <tr>
-            <td>mid-left</td>
+            <td><!--mid-left--></td>
             <td id="blocklyArea"><!--Blockly will be positioned here--></td>
             <td>
+                Clipboard:
+                <div><button onclick="copyCode()" data-clipboard-target="#copy_code">Copy Diagram</button></div>
+                <div><button onclick="pasteCode()">Paste Diagram</button></div>
+                <textarea id="copy_code" style="display:none;"></textarea>
+                <div>&nbsp;</div>
+                File:
                 <div><button onclick="saveCode()">Save Diagram</button></div>
                 <div><button onclick="loadCode()">Load Diagram</button></div>
                 <div>&nbsp;</div>
                 <div><button onclick="exportCode()">Export Workflow</button></div>
                 <input type="file" id="load_file" accept=".diagram.xml" onchange="handleFiles(this.files)" style="display:none;"></input>
+                <div>&nbsp;</div>
+                <a href="javascript:openSamples()">Samples</a>
             </td>
         </tr>
         <tr>
-            <td>bottom-left</td>
-            <td>bottom-center</td>
+            <td><!--bottom-left  --></td>
+            <td><!--bottom-center--></td>
             <td>
                 <div><button onclick="generateCode()">Generate</button></div>
             </td>
@@ -225,6 +234,15 @@
             var code = Blockly.Wexflow.workspaceToCode(mainWorkspace);
             console.log("Generated: " + code);
         }
+        function copyCode() {
+            var xml = Blockly.Xml.workspaceToDom(mainWorkspace);
+            // Ugly:
+            //var xml_text = Blockly.Xml.domToText(xml);
+            // Pretty:
+            var xml_text = Blockly.Xml.domToPrettyText(xml);
+            
+            download('wexflow.diagram.xml', xml_text);
+        }
         function saveCode() {
             var xml = Blockly.Xml.workspaceToDom(mainWorkspace);
             // Ugly:
@@ -272,6 +290,30 @@
                 break;
             }
         }
+
+        function openSamples() {
+            var openSamplesWin = window.open('samples.html', 'open_samples', 'width=400,height=300', true)
+        }
+        function openSample(name) {
+            var theUrl = 'samples/' + name;
+            xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var xml = Blockly.Xml.textToDom(xmlhttp.responseText);
+                    Blockly.Xml.domToWorkspace(xml, mainWorkspace);
+                }
+            }
+            xmlhttp.open("GET", theUrl, false );
+            xmlhttp.send();
+        }
+        window.addEventListener('message', function(event) {
+            var prefix = 'openSample:';
+            var eventData = event.data;
+            if (eventData.startsWith(prefix)) {
+                var name = eventData.substr(prefix.length);
+                openSample(name);
+            }
+        });
     </script>
 
 </body>

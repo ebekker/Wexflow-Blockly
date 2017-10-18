@@ -1,0 +1,17 @@
+
+<ul>
+    <li><a href="javascript:openSample('wexflow-samples-workflow1.diagram.xml')"         >workflow1.diagram.xml</a></li>
+    <li><a href="javascript:openSample('wexflow-samples-workflow2.diagram.xml')"         >workflow2.diagram.xml</a></li>
+    <li><a href="javascript:openSample('wexflow-samples-workflow3.diagram.xml')"         >workflow3.diagram.xml</a></li>
+    <li><a href="javascript:openSample('wexflow-samples-execution_graph.diagram.xml')"   >execution_graph.diagram.xml</a></li>
+    <li><a href="javascript:openSample('wexflow-samples-flowchart1_if.diagram.xml')"     >flowchart1_if.diagram.xml</a></li>
+    <li><a href="javascript:openSample('wexflow-samples-flowchart2_while.diagram.xml')"  >flowchart2_while.diagram.xml</a></li>
+    <li><a href="javascript:openSample('wexflow-samples-flowchart3_switch.diagram.xml')" >flowchart3_switch.diagram.xml</a></li>
+    <li><a href="javascript:openSample('wexflow-samples-workflow_events.diagram.xml')"   >workflow_events.diagram.xml</a></li>
+</ul>
+
+<script>
+    function openSample(name) {
+        opener.postMessage('openSample:' + name, '*');
+    }
+</script>
