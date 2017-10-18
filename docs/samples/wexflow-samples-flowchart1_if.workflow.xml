@@ -1,5 +1,5 @@
-<?xml version='1.0'?>
-<Workflow xmlns="urn:wexflow-schema" id="1" name="TBD" description="TBD">
+<?xml version="1.0"?>
+<Workflow xmlns="urn:wexflow-schema" id="7" name="Workflow_If" description="Workflow_If">
 
 <Settings>
   <Setting name="launchType" value="trigger" />

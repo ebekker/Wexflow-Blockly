@@ -1,6 +1,12 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
   <variables></variables>
+  <block type="wexflow_diagram_text_single" id="f#j)O{A4RTqJT|YX9t$M" x="-630" y="-90">
+    <field name="NAME">Sample:  flowchart2_while</field>
+  </block>
   <block type="wexflow_workflow" id="!3)d$.Xsm{eL{l?ke-^]" x="-630" y="-30">
+    <field name="ID">8</field>
+    <field name="NAME">Workflow_While</field>
+    <field name="DESCRIPTION">Workflow_While</field>
     <statement name="SETTINGS">
       <block type="wexflow_workflow_setting" id="#)zETZ?[DE1#n!MF5oR=">
         <field name="NAME">launchType</field>

@@ -1,6 +1,12 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
   <variables></variables>
+  <block type="wexflow_diagram_text_single" id="Rdh8nzl49Y8Tf3UI0.J/" x="-630" y="-70">
+    <field name="NAME">Sample:  flowchart1_if</field>
+  </block>
   <block type="wexflow_workflow" id="!3)d$.Xsm{eL{l?ke-^]" x="-630" y="-30">
+    <field name="ID">7</field>
+    <field name="NAME">Workflow_If</field>
+    <field name="DESCRIPTION">Workflow_If</field>
     <statement name="SETTINGS">
       <block type="wexflow_workflow_setting" id="#)zETZ?[DE1#n!MF5oR=">
         <field name="NAME">launchType</field>

@@ -1,6 +1,24 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
   <variables></variables>
-  <block type="wexflow_workflow" id="!3)d$.Xsm{eL{l?ke-^]" x="30" y="30">
+  <block type="wexflow_diagram_text_single" id="w*?%?gbLU7*A6K~,}CPJ" x="30" y="-90">
+    <field name="NAME">Sample:  execution_graph</field>
+  </block>
+  <block type="wexflow_diagram_text_group" id="zk8EAyZmz.;:!Erh:$2#" x="30" y="-50">
+    <statement name="NAME">
+      <block type="wexflow_diagram_text_multi" id="_?V4^?LR=P9HAq,2zw3A">
+        <field name="NAME">Based on:</field>
+        <next>
+          <block type="wexflow_diagram_text_multi" id="$|?5RfVu|!g:%B`^X*$?">
+            <field name="NAME">https://github.com/aelassas/Wexflow/wiki/Samples#execution-graph</field>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="wexflow_workflow" id="!3)d$.Xsm{eL{l?ke-^]" x="30" y="50">
+    <field name="ID">6</field>
+    <field name="NAME">Workflow_Ftp_upload</field>
+    <field name="DESCRIPTION">Workflow_Ftp_upload</field>
     <statement name="SETTINGS">
       <block type="wexflow_workflow_setting" id="#)zETZ?[DE1#n!MF5oR=">
         <field name="NAME">launchType</field>

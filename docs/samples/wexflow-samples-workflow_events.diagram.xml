@@ -1,6 +1,12 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
   <variables></variables>
+  <block type="wexflow_diagram_text_single" id="@]lFAH#8H(LzhEXHNmMF" x="-630" y="-90">
+    <field name="NAME">Sample:  workflow_events</field>
+  </block>
   <block type="wexflow_workflow" id="[XCQ7~DWW`reQ3dn_ot0" x="-630" y="-30">
+    <field name="ID">9</field>
+    <field name="NAME">Workflow_Events</field>
+    <field name="DESCRIPTION">Workflow_Events</field>
     <statement name="SETTINGS">
       <block type="wexflow_workflow_setting" id="@BMn[zXP*qxk#e@?e[aZ">
         <field name="NAME">launchType</field>
