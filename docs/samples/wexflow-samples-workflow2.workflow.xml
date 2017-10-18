@@ -1,5 +1,5 @@
-<?xml version='1.0'?>
-<Workflow xmlns="urn:wexflow-schema" id="1" name="TBD" description="TBD">
+<?xml version="1.0"?>
+<Workflow xmlns="urn:wexflow-schema" id="6" name="Workflow_FilesSender" description="Workflow_FilesSender">
 
 <Settings>
   <Setting name="launchType" value="periodic" />

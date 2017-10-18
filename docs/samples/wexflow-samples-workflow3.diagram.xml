@@ -1,6 +1,12 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
   <variables></variables>
+  <block type="wexflow_diagram_text_single" id="+b}@Sagh2|/cUcKGh@Ke" x="30" y="-70">
+    <field name="NAME">Sample:  workflow3</field>
+  </block>
   <block type="wexflow_workflow" id="!3)d$.Xsm{eL{l?ke-^]" x="30" y="30">
+    <field name="ID">12</field>
+    <field name="NAME">Workflow_ffmpeg</field>
+    <field name="DESCRIPTION">Workflow_ffmpeg</field>
     <statement name="SETTINGS">
       <block type="wexflow_workflow_setting" id="#)zETZ?[DE1#n!MF5oR=">
         <field name="NAME">launchType</field>
