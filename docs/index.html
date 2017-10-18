@@ -122,6 +122,12 @@
                       </block>
                     </category>
                     <sep></sep>
+                    <category name="Misc">
+                        <block type="wexflow_diagram_text_single"></block>
+                        <block type="wexflow_diagram_text_group"></block>
+                        <block type="wexflow_diagram_text_multi"></block>
+                    </category>
+                    <sep></sep>
                 </xml>
                   <!-- <xml id="toolbox" style="display: none">
                     <category name="Logic" expanded="true">
@@ -156,6 +162,8 @@
                 <input type="file" id="load_file" accept=".diagram.xml" onchange="handleFiles(this.files)" style="display:none;"></input>
                 <div>&nbsp;</div>
                 <a href="javascript:openSamples()">Samples</a>
+                <div>&nbsp;</div>
+                <div><button onclick="clearCode()">Cleark Workspace</button></div>
             </td>
         </tr>
         <tr>
@@ -257,6 +265,9 @@
         function exportCode() {
             var code = Blockly.Wexflow.workspaceToCode(mainWorkspace);
             download('wexflow.workflow.xml', code);
+        }
+        function clearCode() {
+            mainWorkspace.clear();
         }
 
         // From:  https://stackoverflow.com/a/18197341/5428506

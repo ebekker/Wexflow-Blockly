@@ -333,6 +333,11 @@ Blockly.Wexflow.sanitizeXmlValue = function(val) {
       .replace(/'/g, '&apos;');
 }
 
+// Text blocks don't produce anything in the generation
+Blockly.Wexflow['wexflow_diagram_text_single'] = function(block) { return ''; }
+Blockly.Wexflow['wexflow_diagram_text_group'] = function(block) { return ''; }
+Blockly.Wexflow['wexflow_diagram_text_multi'] = function(block) { return ''; }
+
 Blockly.Wexflow['wexflow_workflow'] = function(block) {
   var statements_settings = Blockly.Wexflow.statementToCode(block, 'SETTINGS');
   var statements_graph = Blockly.Wexflow.statementToCode(block, 'GRAPH');

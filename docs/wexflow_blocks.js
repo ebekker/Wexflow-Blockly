@@ -1,7 +1,48 @@
+Blockly.Blocks['wexflow_diagram_text_single'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("Your Text Here"), "NAME");
+    this.setInputsInline(true);
+    this.setColour(15);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+}
+
+Blockly.Blocks['wexflow_diagram_text_group'] = {
+  init: function() {
+    this.appendStatementInput("NAME")
+        .setCheck("type-wexflow_diagram_text");
+    this.setColour(30);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['wexflow_diagram_text_multi'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldTextInput("Your Text Here"), "NAME");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, "type-wexflow_diagram_text");
+    this.setNextStatement(true, "type-wexflow_diagram_text");
+    this.setColour(15);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['wexflow_workflow'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("WORKFLOW");
+          .appendField("WORKFLOW")
+          .appendField("id")
+          .appendField(new Blockly.FieldTextInput(""), "ID")
+          .appendField("name")
+          .appendField(new Blockly.FieldTextInput(""), "NAME");
+      this.appendDummyInput()
+          .appendField("description")
+          .appendField(new Blockly.FieldTextInput(""), "DESCRIPTION");        
       this.appendStatementInput("SETTINGS")
           .setCheck("type-wexflow_workflow_setting")
           .setAlign(Blockly.ALIGN_RIGHT)
